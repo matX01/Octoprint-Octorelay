@@ -11,15 +11,18 @@ from __future__ import absolute_import
 
 import octoprint.plugin
 
-class OctorelayPlugin(octoprint.plugin.SettingsPlugin,
+class OctorelayPlugin(octoprint.plugin.StartupPlugin,
+    octoprint.plugin.SettingsPlugin,
     octoprint.plugin.AssetPlugin,
     octoprint.plugin.TemplatePlugin
 ):
 
-    ##~~ SettingsPlugin mixin
+
     def on_after_startup(self):
         self._logger.info("WELCOME TO OCTOOOOORELAAAAAYYYYY !!!!!!!")
 
+
+    ##~~ SettingsPlugin mixin
     def get_settings_defaults(self):
         return {
             # put your plugin's default settings here
