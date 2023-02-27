@@ -26,7 +26,7 @@ class OctorelayPlugin(octoprint.plugin.StartupPlugin,
     ##~~ SettingsPlugin mixin
     
     def OnPrinterConnect(self):
-        
+        self._logger.info("Turning on the UPS ...")
         self.UPS.TurnEcoPlugOn()
 
         
