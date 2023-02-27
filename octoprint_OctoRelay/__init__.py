@@ -21,6 +21,7 @@ class OctorelayPlugin(octoprint.plugin.StartupPlugin,
     def on_after_startup(self):
         self._logger.info("WELCOME TO OCTOOOOORELAAAAAYYYYY !!!!!!!")
         self.UPS = EatonEcllipseController.EatonEcclipseController()
+        self.UPS.TurnEcoPlugOn()
 
 
     ##~~ SettingsPlugin mixin
