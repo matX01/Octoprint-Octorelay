@@ -10,7 +10,7 @@ from __future__ import absolute_import
 # Take a look at the documentation on what other plugin mixins are available.
 
 import octoprint.plugin
-
+import EatonEcllipseController
 class OctorelayPlugin(octoprint.plugin.StartupPlugin,
     octoprint.plugin.SettingsPlugin,
     octoprint.plugin.AssetPlugin,
@@ -20,9 +20,16 @@ class OctorelayPlugin(octoprint.plugin.StartupPlugin,
 
     def on_after_startup(self):
         self._logger.info("WELCOME TO OCTOOOOORELAAAAAYYYYY !!!!!!!")
+        self.UPS = EatonEcllipseController.EatonEcclipseController()
 
 
     ##~~ SettingsPlugin mixin
+    
+    def OnPrinterConnect(self):
+        
+        self.UPS.TurnEcoPlugOn()
+
+        
     def get_settings_defaults(self):
         return {
             # put your plugin's default settings here
@@ -80,5 +87,6 @@ def __plugin_load__():
 
     global __plugin_hooks__
     __plugin_hooks__ = {
-        "octoprint.plugin.softwareupdate.check_config": __plugin_implementation__.get_update_information
+        "octoprint.plugin.softwareupdate.check_config": __plugin_implementation__.get_update_information,
+        "octoprint.printer.handle_connect": __plugin_implementation__.OnPrinterConnect
     }
